@@ -102,3 +102,6 @@ package-lock.json
 
 ### README.md refer
 subRD.md
+
+### out file
+*.out
