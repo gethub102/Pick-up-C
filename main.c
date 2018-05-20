@@ -1,32 +1,17 @@
 #include <stdio.h>
 #include <stdint.h>
 
-typedef uint32_t int32;
-
-typedef struct {
-	char *name;
-	int age;
-} Person;
+void add_numbers (int*a, int*b, int*c);
 
 int main(void) {
-	struct {
-		int a;
-		float b; 
-		int c;
-	} mystore;
 
-	mystore.a = 4;
-	mystore.b = 2.3;
-	mystore.c = 0;
-
-	printf(" a = %d, b = %f, c = %d\n", mystore.a, mystore.b, mystore.c);
-
-	Person p ;
-	p.name = "wnebin";
-	p.age = 23;
-
-	printf("name is %s, and age is %d\n", p.name, p.age);
+	int c = 0;
+	int a = 2, b = 3;
+	add_numbers(&a, &b, &c);
+	printf("c = %d\n", c);
 	return 0;
+}
 
-
+void add_numbers (int *a, int *b, int *c) {
+	*c = *a + *b;
 }
