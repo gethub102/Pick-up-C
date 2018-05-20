@@ -3,18 +3,30 @@
 
 typedef uint32_t int32;
 
+typedef struct {
+	char *name;
+	int age;
+} Person;
+
 int main(void) {
-	int32 a[4];
-	a[0] = 3;
-	a[1] = 2;
-	a[2] = 4;
-	a[3] = 5;
+	struct {
+		int a;
+		float b; 
+		int c;
+	} mystore;
 
-	int32 b[4] = {5,6,7,8};
-	printf("a values are %d, %d, %d, %d\n", a[0], a[1], a[2], a[3]);
+	mystore.a = 4;
+	mystore.b = 2.3;
+	mystore.c = 0;
 
+	printf(" a = %d, b = %f, c = %d\n", mystore.a, mystore.b, mystore.c);
 
-	printf("b values are %d, %d, %d, %d\n", b[0], b[1], b[2], b[3]);
-	
+	Person p ;
+	p.name = "wnebin";
+	p.age = 23;
+
+	printf("name is %s, and age is %d\n", p.name, p.age);
 	return 0;
+
+
 }
