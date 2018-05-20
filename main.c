@@ -1,17 +1,9 @@
 #include <stdio.h>
-#include <stdint.h>
 
-void add_numbers (int*a, int*b, int*c);
-
-int main(void) {
-
-	int c = 0;
-	int a = 2, b = 3;
-	add_numbers(&a, &b, &c);
-	printf("c = %d\n", c);
+int main(int argc, char **argv) {
+	printf("argc = %d\n", argc);
+	for (int i = 0; i < argc; i++) {
+		printf("argv[%d] = %s\n", i, argv[i]);
+	}
 	return 0;
-}
-
-void add_numbers (int *a, int *b, int *c) {
-	*c = *a + *b;
 }
