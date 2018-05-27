@@ -1,21 +1,15 @@
+// compile command is cc main.c addnumbers.c
+// run command is ./a.out
+
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "myheader.h"
 
 int main(void) {
 
-	char *ptr;
-
-	ptr = (char*) malloc(24);
-
-	if (ptr == NULL) {
-		printf("Failed to get or allocate memory!\n");
-		exit(1);
-	}
-	strcpy(ptr, "Hello there!");
-	printf("ptr: %s\n", ptr);
-	printf("ptr len = %lu\n", strlen(ptr));
-
-	free(ptr);
+	int sum = addnum(2, 5);
+	int sum2 = addnumbers(3, 5);
+	printf("sum = %d\n", sum);
+	printf("sum2 = %d\n", sum2);
+	
 	return 0;
 }
