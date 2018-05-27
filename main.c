@@ -1,29 +1,21 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 int main(void) {
 
-	int i;
-	char c;
-
 	char *ptr;
-	char s;
 
-	c = 'W';
-	i = (int) c;
+	ptr = (char*) malloc(24);
 
-	printf("i = %d, %c\n", i, i);
+	if (ptr == NULL) {
+		printf("Failed to get or allocate memory!\n");
+		exit(1);
+	}
+	strcpy(ptr, "Hello there!");
+	printf("ptr: %s\n", ptr);
+	printf("ptr len = %lu\n", strlen(ptr));
 
-	s = 'x';
-	ptr = &s;
-
-	i = (int)ptr;
-
-	printf("i = %x\n", i);
-
-	i = 3000;
-	c = (char)i;
-	printf("c = %d\n", c);
-	// printf("c = %d, %c\n", c, c); // int to char will lose 3 bytes
-
+	free(ptr);
 	return 0;
 }
