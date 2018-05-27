@@ -1,29 +1,29 @@
-// gcc -E -c main.c // show preprocessor
-
-// #include <stdio.h>
-
-#define NUM1 5
-#define NUM2 8
-#define SUM(x, y) (x) + (y)
-
-// #define ADD
+#include <stdio.h>
 
 int main(void) {
 
-	int i, k, sum;
+	int i;
+	char c;
 
-	i = NUM1;
-	k = NUM2;
+	char *ptr;
+	char s;
 
-	sum = SUM(i, k);
+	c = 'W';
+	i = (int) c;
 
-#ifdef ADD
-	sum = i + k;
+	printf("i = %d, %c\n", i, i);
 
-#else
-	sum = 1 + k + 10;
+	s = 'x';
+	ptr = &s;
 
-#endif
+	i = (int)ptr;
+
+	printf("i = %x\n", i);
+
+	i = 3000;
+	c = (char)i;
+	printf("c = %d\n", c);
+	// printf("c = %d, %c\n", c, c); // int to char will lose 3 bytes
+
 	return 0;
-
 }
