@@ -1,28 +1,29 @@
-#include <stdio.h>
-#include <string.h>
+// gcc -E -c main.c // show preprocessor
+
+// #include <stdio.h>
+
+#define NUM1 5
+#define NUM2 8
+#define SUM(x, y) (x) + (y)
+
+// #define ADD
 
 int main(void) {
 
-	char str[13] = "First string";
-	char *ptr = "Second string";
+	int i, k, sum;
 
-	printf("str = %s\n", str);
-	printf("ptr = %s\n", ptr);
+	i = NUM1;
+	k = NUM2;
 
-	printf("str len = %lu\n", strlen(str));
+	sum = SUM(i, k);
 
-	ptr++;
-	printf("ptr %s\n", ptr);
+#ifdef ADD
+	sum = i + k;
 
-	char * pstr = (char*)(&str + 1); // forward a whole string
-	printf("str - 1 = %c\n", *(pstr - 2));
+#else
+	sum = 1 + k + 10;
 
-	str[1] = 'a';
-	printf("str = %c\n", *(str + 1));
-
-	/*****this will cause bus error*****/
-	*(ptr + 1) = 'a'; 
-	printf("ptr = %s\n", ptr);
-
+#endif
 	return 0;
+
 }
