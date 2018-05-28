@@ -54,7 +54,7 @@ void display(Node *head) {
 
 /* concat the list */
 void concat(Node *a, Node *b) {
-	if (a != NULL && a != NULL) {
+	if (a != NULL && b != NULL) {
 		if (a->next == NULL) {
 			a->next = b;
 		} else {
