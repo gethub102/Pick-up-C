@@ -1,91 +1,53 @@
 #include <stdio.h>
-#include <stdbool.h>
-#include <stdint.h>
-#include <string.h>
+#include <stdlib.h>
 
-typedef uint32_t int32;
-
-bool isPowOfTwo(int num);
-int32 countSetBits(int n);
-void swap(int* a, int*b);
-bool allBitSets(unsigned int n);
-bool bitsAreInAltOrder(unsigned int n);
 
 int main(void) {
 
-	int a = 0x01;
-	printf("a = %0x\n", a);
+	int MAX = 10;
+	int *a = (int*) malloc(MAX * sizeof(int));
+	int *b;
 
-	int b = a<<3;
-	printf("a = %0x\n", b);
+	FILE *fp1;
+	FILE *fp2;
 
-	int c = a<<1;
-	printf("a = %0x\n", c);
+	fp1 = fopen("a.txt", "r");
+	if (fp1 == NULL) {
+		perror("open file a.txt");
+		exit(-1);
+	}
 
-	const char* str = "helloo";
-	printf("sizeof str = %lu\n", sizeof(str));
-	printf("len str = %lu\n", strlen(str));
+	fp2 = fopen("b.txt", "w");
+	if (fp2 == NULL) {
+		perror("open file b.txt");
+		fclose(fp1);
+		exit(-1);
+	}
+	int i = 0;
+	int j = 0;
+	while (fscanf(fp1, "%d", &a[i]) != EOF) {
+		i++;
+		j++;
+		if (i >= MAX) {
+			MAX = 2 * MAX;
+			b = (int*)realloc(a, MAX * sizeof(int));
+			if (b == NULL) {
+				perror("realloc memory failed");
+				fclose(fp1);
+				fclose(fp2);
+				exit(-1);
+			}
+			a = b;
+		}
+		printf("file a is reading .. \n");
+	}
 
-	const char* strIII = "hellooooooooo";
-	printf("sizeof strIII = %lu\n", sizeof(strIII));
-	printf("len strIII = %lu\n", strlen(strIII));
+	while (--j >= 0) {
+		fprintf(fp2, "%d\n", a[j]);
+		printf("file b is writing .. \n");
+	}
 
-	char strII[] = "hello";
-	printf("sizeof strII = %lu\n", sizeof(strII));
-	printf("len strII = %lu\n", strlen(strII));
-
-	
+	fclose(fp1);
+	fclose(fp2);
 	return 0;
 }
-
-/*
-If we subtract a power of 2 numbers by 1 then all unset bits after t
-he only set bit become set; and the set bit become unset.
-
-For example for 4 ( 100) and 16(10000), we get following after 
-subtracting 1
-	3 –> 011
-	15 –> 01111
-*/
-
-bool isPowOfTwo (int num) {
-	return num && (!(num & (num - 1)));
-}
-
-
-/* 
-  All power of two numbers have only one bit set. 
-  So count the no. of set bits and if you get 1 then 
-  number is a power of 2. 
- */
-
-
- int32 countSetBits(int n) {
- 	int32 count = 0;
- 	while(n) {
- 		count += n & 1;
- 		n >>= 1;
- 	}
- 	return count;
- }
-
- void swap(int* a, int*b) {
- 	if (a == b || *a == *b) {
- 		return;
- 	}
- 	*a = *a ^ *b;
- 	*b = *a ^ *b;
- 	*a = *a ^ *b;
- }
-
- bool allBitSets(unsigned int n) {
- 	if ((n & (n + 1)) == 0) 
- 		return true;
- 	else 
- 		return false;
- }
-
- bool bitsAreInAltOrder(unsigned int n) {
- 	n ^= n>>1;
- 	return allBitSets(n);
- }
