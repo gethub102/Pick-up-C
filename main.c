@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdint.h>
+#include <string.h>
 
 typedef uint32_t int32;
 
@@ -21,6 +22,17 @@ int main(void) {
 	int c = a<<1;
 	printf("a = %0x\n", c);
 
+	const char* str = "helloo";
+	printf("sizeof str = %lu\n", sizeof(str));
+	printf("len str = %lu\n", strlen(str));
+
+	const char* strIII = "hellooooooooo";
+	printf("sizeof strIII = %lu\n", sizeof(strIII));
+	printf("len strIII = %lu\n", strlen(strIII));
+
+	char strII[] = "hello";
+	printf("sizeof strII = %lu\n", sizeof(strII));
+	printf("len strII = %lu\n", strlen(strII));
 
 	
 	return 0;
